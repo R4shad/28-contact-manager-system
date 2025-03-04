@@ -4,8 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-        "ts": "tsc --watch" ,
-    "dev": "nodemon dist/index.js"
+    "ts": "tsc --watch",
+    "dev": "nodemon dist/index.js",
+    "lint": "eslint \"src/**/*.ts\""
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,18 @@
     "sequelize": "^6.37.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
     "nodemon": "^3.1.9",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0"
   }
 }
