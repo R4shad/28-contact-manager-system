@@ -4,6 +4,8 @@ import morgan from 'morgan'
 
 import { Contact } from './models/Contact.model'
 
+import { contactRoutes } from './routes/contact.routes'
+
 export class App {
   app: express.Application
   port: string
@@ -18,6 +20,7 @@ export class App {
 
     this.startServer()
     this.conectDatabase()
+    this.routes()
   }
 
   private startServer() {
@@ -34,5 +37,9 @@ export class App {
     } catch (error) {
       console.error('Unable to connect to the database:', error)
     }
+  }
+
+  private routes() {
+    this.app.use('/api/contacts', contactRoutes)
   }
 }
