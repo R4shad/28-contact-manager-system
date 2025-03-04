@@ -1,7 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-import { sequelize } from './database/database'
+
+import { Contact } from './models/Contact.model'
 
 export class App {
   app: express.Application
@@ -29,8 +30,7 @@ export class App {
 
   private async conectDatabase() {
     try {
-      await sequelize.authenticate()
-      console.log('Connection has been established successfully.')
+      await Contact.sync()
     } catch (error) {
       console.error('Unable to connect to the database:', error)
     }
