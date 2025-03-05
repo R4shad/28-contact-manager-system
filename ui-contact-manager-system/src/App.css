@@ -59,3 +59,7 @@ form {
 .error-label {
   color: red;
 }
+.buttons-container {
+  display: flex;
+  gap: 8px;
+}

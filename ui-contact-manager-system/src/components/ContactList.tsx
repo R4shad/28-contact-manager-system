@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useContacts } from '../hooks/useContacts'
 
 const ContactList = () => {
@@ -19,8 +20,11 @@ const ContactList = () => {
               <td>{contact.name}</td>
               <td>{contact.email}</td>
               <td>{contact.phone}</td>
-              <td>
+              <td className="buttons-container">
                 <button className="delete-button">Delete</button>
+                <Link to="/edit" state={{ contact }}>
+                  <button className="delete-button">Edit</button>
+                </Link>
               </td>
             </tr>
           ))}

@@ -23,60 +23,42 @@ const CreateContact = () => {
 
   const validateData = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    // Resetear errores antes de la validación
+    let hasError = false
+    const newErrors = { ...emptyErrors }
+
     if (formData.name === '') {
-      setFormErrors((prev) => ({
-        ...prev,
-        errorName: 'Name is required',
-      }))
-    } else {
-      setFormErrors((prev) => ({
-        ...prev,
-        errorName: '',
-      }))
+      newErrors.errorName = 'Name is required'
+      hasError = true
     }
-
     if (formData.email === '') {
-      setFormErrors((prev) => ({
-        ...prev,
-        errorEmail: 'Email is required',
-      }))
-    } else {
-      setFormErrors((prev) => ({
-        ...prev,
-        errorEmail: '',
-      }))
+      newErrors.errorEmail = 'Email is required'
+      hasError = true
     }
-
     if (formData.phone === -1) {
-      setFormErrors((prev) => ({
-        ...prev,
-        errorPhone: 'Phone is required',
-      }))
-    } else {
-      setFormErrors((prev) => ({
-        ...prev,
-        errorPhone: '',
-      }))
+      newErrors.errorPhone = 'Phone is required'
+      hasError = true
     }
 
-    if (
-      formErrors.errorName === '' &&
-      formErrors.errorEmail === '' &&
-      formErrors.errorPhone === ''
-    ) {
+    setFormErrors(newErrors)
+
+    // Solo llamar a handleSubmit si no hay errores
+    if (!hasError) {
       handleSubmit()
     }
   }
 
   return (
     <div className="form-container">
+      <h2>Create Contact</h2>
       <form
         onSubmit={(e) => {
           validateData(e)
         }}
       >
         <label>
-          Name:{' '}
+          Name:
           <input
             type="text"
             name="name"
@@ -89,7 +71,7 @@ const CreateContact = () => {
         </label>
         <label className="error-label">{formErrors.errorName}</label>
         <label>
-          Email:{' '}
+          Email:
           <input
             type="email"
             name="email"
@@ -102,7 +84,7 @@ const CreateContact = () => {
         </label>
         <label className="error-label">{formErrors.errorEmail}</label>
         <label>
-          Phone:{' '}
+          Phone:
           <input
             type="number"
             name="phone"

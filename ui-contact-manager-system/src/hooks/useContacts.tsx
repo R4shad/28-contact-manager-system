@@ -6,6 +6,7 @@ export const useContacts = () => {
   const [contacts, setContacts] = useState<Contact[]>([])
 
   useEffect(() => {
+    console.log('useEffect')
     const fetchContacts = async () => {
       const response = await getContacts()
       if (!response) {
