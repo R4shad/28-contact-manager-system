@@ -2,9 +2,24 @@ import { Link } from 'react-router-dom'
 import { useContacts } from '../hooks/useContacts'
 
 const ContactList = () => {
-  const { contacts, handleDelete } = useContacts()
+  const { contacts, handleDelete, search, setSearch, loading } = useContacts()
+
   return (
     <div className="contact-list-container">
+      <span>
+        Search Contact:{' '}
+        <input
+          className="input-serach"
+          type="text"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value)
+          }}
+        />
+      </span>
+
+      {loading && <div className="loading-spinner">🔄 Loading...</div>}
+
       <table>
         <thead>
           <tr>

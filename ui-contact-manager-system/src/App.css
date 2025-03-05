@@ -63,3 +63,6 @@ form {
   display: flex;
   gap: 8px;
 }
+.input-serach {
+  margin-bottom: 16px;
+}

@@ -1,6 +1,6 @@
 import { Contact, FromContact } from './types.d'
 
-const API_URL = 'http://localhost:3000/api/contacts/'
+const API_URL = 'http://localhost:3000/api/contacts'
 
 export const getContacts = async () => {
   try {
@@ -65,7 +65,7 @@ export const editContact = async ({ contact, id }: EditContactParams) => {
 
 export const deleteContact = async (id: string) => {
   try {
-    const response = await fetch(`${API_URL}${id}`, {
+    const response = await fetch(`${API_URL}/${id}`, {
       method: 'DELETE',
     })
 
@@ -73,6 +73,21 @@ export const deleteContact = async (id: string) => {
       console.error('Api response error')
     } else {
       const data: Contact = await response.json()
+      return data
+    }
+  } catch (error) {
+    console.error('Error deleting contact:', error)
+  }
+}
+
+export const searchContact = async (search: string) => {
+  try {
+    const response = await fetch(`${API_URL}?search=${search}`)
+
+    if (!response.ok) {
+      console.error('Api response error')
+    } else {
+      const data: Contact[] = await response.json()
       return data
     }
   } catch (error) {
