@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Contact } from '../types.d'
-import { getContacts } from '../functions'
+import { deleteContact, getContacts } from '../functions'
 
 export const useContacts = () => {
   const [contacts, setContacts] = useState<Contact[]>([])
@@ -19,5 +19,17 @@ export const useContacts = () => {
     fetchContacts()
   }, [])
 
-  return { contacts }
+  const handleDelete = async (id: string) => {
+    const response = await deleteContact(id)
+    if (!response) {
+      console.error('deleteContact returned an error')
+    } else {
+      alert('DELETED SUCCESSFULLY')
+      setContacts((prevContacts) =>
+        prevContacts.filter((contact) => contact.id !== id)
+      )
+    }
+  }
+
+  return { contacts, handleDelete }
 }

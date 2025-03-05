@@ -62,3 +62,20 @@ export const editContact = async ({ contact, id }: EditContactParams) => {
     console.error('Error editing contacts:', error)
   }
 }
+
+export const deleteContact = async (id: string) => {
+  try {
+    const response = await fetch(`${API_URL}${id}`, {
+      method: 'DELETE',
+    })
+
+    if (!response.ok) {
+      console.error('Api response error')
+    } else {
+      const data: Contact = await response.json()
+      return data
+    }
+  } catch (error) {
+    console.error('Error deleting contact:', error)
+  }
+}

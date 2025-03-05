@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useContacts } from '../hooks/useContacts'
 
 const ContactList = () => {
-  const { contacts } = useContacts()
+  const { contacts, handleDelete } = useContacts()
   return (
     <div className="contact-list-container">
       <table>
@@ -21,7 +21,14 @@ const ContactList = () => {
               <td>{contact.email}</td>
               <td>{contact.phone}</td>
               <td className="buttons-container">
-                <button className="delete-button">Delete</button>
+                <button
+                  className="delete-button"
+                  onClick={() => {
+                    handleDelete(contact.id)
+                  }}
+                >
+                  Delete
+                </button>
                 <Link to="/edit" state={{ contact }}>
                   <button className="delete-button">Edit</button>
                 </Link>
