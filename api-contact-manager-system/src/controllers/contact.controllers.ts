@@ -14,6 +14,7 @@ export const getContacts = async (req: Request, res: Response) => {
             { email: { [Op.like]: `%${search}%` } },
           ],
         },
+        order: [['createdAt', 'ASC']],
       })
       if (contacts.length === 0) {
         res
@@ -23,7 +24,9 @@ export const getContacts = async (req: Request, res: Response) => {
         res.status(200).json(contacts)
       }
     } else {
-      const Contacts = await Contact.findAll()
+      const Contacts = await Contact.findAll({
+        order: [['createdAt', 'ASC']],
+      })
       const status = 200
       res.status(status).json(Contacts)
     }
