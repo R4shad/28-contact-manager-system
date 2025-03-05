@@ -14,3 +14,33 @@ a {
   text-decoration: none;
   font-weight: 600;
 }
+.contact-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.list-head {
+  font-weight: 600;
+}
+table,
+th,
+td {
+  text-align: justify;
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-style: dotted;
+}
+thead {
+  text-align: center;
+}
+td,
+th {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.delete-button {
+  background-color: rgb(102, 102, 105);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
